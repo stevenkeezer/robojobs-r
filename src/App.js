@@ -1,25 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  useParams
+} from "react-router-dom";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Provider } from "react-redux";
+
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import Navibar from "./components/Navibar";
+import CompanyPage from "./pages/CompanyPage";
+import CandidatePage from "./pages/CandidatePage";
+import CandidatesPage from "./pages/CandidatesPage";
+
+import store from "./redux/store";
+
+import "./App.css";
 
 function App() {
+  const [currentUser, setCurrentuser] = useState({});
+
+  const onSubmit = (email, password) => {
+    setCurrentuser({ email, password });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Navibar />
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => <LoginPage onSubmit={onSubmit} />}
+          />
+          <Route
+            path="/company"
+            exact
+            render={() => <CompanyPage currentUser={currentUser} />}
+          />
+          <Route path={`/candidates/:id`} exact component={CandidatePage} />
+          <Route path="/candidates" exact component={CandidatesPage} />
+          <Route
+            path={`/login`}
+            exact
+            render={() => <LoginPage onSubmit={onSubmit} />}
+          />
+        </Switch>
+      </div>
+    </Provider>
   );
 }
 
