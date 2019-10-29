@@ -31,7 +31,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Navibar />
+        <Navibar currentUser={currentUser} />
         <Switch>
           <Route
             path="/"

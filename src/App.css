@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto+Sans");
 @import url("https://fonts.googleapis.com/css?family=Bowlby+One+SC&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
-body {
+body,
+html {
   font-family: "Lato", sans-serif;
 }
 
@@ -62,7 +63,7 @@ body .loginForm {
 }
 
 .accountHeader {
-  margin-top: -10%;
+  /* margin-top: -10%; */
 }
 #loading {
   min-height: 100%; /* Fallback for browsers do NOT support vh unit */

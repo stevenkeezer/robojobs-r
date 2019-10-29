@@ -43,7 +43,7 @@ export default function CandidatesPage() {
     return candidates.map(candidate => {
       return (
         <Card
-          className="mx-auto m-2"
+          className="mx-auto m-2 pt-5"
           style={{ width: "18rem" }}
           key={candidate.id}
         >

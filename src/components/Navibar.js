@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import logo from "../img/logo.png";
 
-export default function Navibar() {
+export default function Navibar(props) {
   let history = useHistory();
 
   const clickHandler = () => {
@@ -11,7 +11,7 @@ export default function Navibar() {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" fixed="top" height="65px">
       <img alt="blah" width="70px" className="mr-2" src={logo}></img>
       <Navbar.Brand className="navBrand" href="#home">
         ROBOJOB
@@ -29,7 +29,9 @@ export default function Navibar() {
             COMPANY
           </Link>
         </Nav>
-        <Button onClick={() => clickHandler()}>Login</Button>
+        {!props.currentUser.email && (
+          <Button onClick={() => clickHandler()}>Login</Button>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );
